@@ -10,6 +10,8 @@ A simple demo is available [here](http://joshgagnon.github.io/react-pdfjs/).
 
 ###Usage
 
+npm install react-pdf-component
+
 ```js
   import PDF from 'react-pdfjs';
 
