@@ -9,10 +9,10 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p",
+    "build-examples": "webpack -p",
     "test": "mocha --require test/setup.js --compilers js:babel-core/register",
     "compile": "babel -d lib/ src/",
-    "run": "NODE_ENV=production node index.js"
+    "prepublish": "npm run compile"
   },
   "dependencies": {
     "pure-render-decorator": "^0.2.0",
@@ -35,6 +35,8 @@
     "mocha": "^2.3.4",
     "node-ensure": "0.0.0",
     "react-addons-test-utils": "^0.14.7",
-    "webpack": "^1.12.10"
+    "url-parse": "^1.0.5",
+    "webpack": "^1.12.10",
+    "xhr2": "^0.1.3"
   }
 }

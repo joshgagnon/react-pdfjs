@@ -41,6 +41,7 @@ class PDF extends React.Component {
             this._pdfPromise = Promise.resolve(PDFJS.getDocument(props.data ? { data: props.data } : props.url))
                 .then(::this.completeDocument)
                 .catch(PDFJS.MissingPDFException, () => this.setState({error: "Can't find PDF"}))
+                .catch((e) => this.setState({error: e.message}))
         }
     }
 
@@ -99,13 +100,13 @@ class PDF extends React.Component {
 
 PDF.propTypes = {
     data: (props) => {
-        if(props.data && !(props.data instanceof ArrayBuffer)){
+        if(props.data && (!(props.data instanceof ArrayBuffer) && !(props.data instanceof Buffer))){
            return new Error('Validation failed!');
         }
     },
     url: React.PropTypes.string,
     width: React.PropTypes.number,
-    finished: React.PropTypes.function
+    finished: React.PropTypes.func
 };
 
 
