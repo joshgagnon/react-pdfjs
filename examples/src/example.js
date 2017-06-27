@@ -1,5 +1,5 @@
 'use strict';
-import PDF from '../../lib/react-pdf';
+import PDF from '../../src/react-pdf';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

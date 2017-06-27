@@ -1,9 +1,12 @@
 import React from 'react';
 import assert from 'assert';
 import PDF from '../src/react-pdf';
-import TestUtils from 'react-addons-test-utils'
+import TestUtils from 'react-dom/test-utils';
 import fs from 'fs';
+import PDFJS from 'pdfjs-dist'
 
+//PDFJS.PDFJS.workerSrc = 'examples/pdf.worker.js';
+//PDFJS.PDFJS.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
 
 describe('Test PDF component', function() {
 
@@ -13,7 +16,7 @@ describe('Test PDF component', function() {
                 throw err;
             }
             this.renderedComponent = TestUtils.renderIntoDocument(
-              <PDF data={data} finished={() => done()} />
+              <PDF data={data} disableWorker={true} finished={() => done()} />
             );
         });
     });

@@ -1,32 +1,33 @@
 'use strict';
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import PDFJS from 'pdfjs-dist'
-import pureRender from 'pure-render-decorator';
 import Promise from 'bluebird';
+import PropTypes from 'prop-types';
+
+
+PDFJS.PDFJS.workerSrc = 'pdf.worker.js';
+
 
 Promise.config({
     cancellation: true
 });
 
-class PDF extends React.Component {
+
+class PDF extends React.PureComponent {
     constructor(props) {
         super(props);
         this._pdfPromise = null;
         this._pagePromises = null;
+        this.completeDocument = ::this.completeDocument;
         this.state = {};
     }
 
     componentDidMount() {
         if(this.props.worker === false){
-            PDFJS.disableWorker = true;
+            PDFJS.PDFJS.disableWorker = true;
         }
         this.loadDocument(this.props);
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return shallowCompare(this, nextProps, nextState);
     }
 
     componentWillReceiveProps(newProps) {
@@ -38,10 +39,11 @@ class PDF extends React.Component {
     loadDocument(props) {
         if(props.data || props.url){
             this.cleanup();
+            // convert to bluebird
             this._pdfPromise = Promise.resolve(PDFJS.getDocument(props.data ? { data: props.data } : props.url))
-                .then(::this.completeDocument)
+                .then(this.completeDocument)
                 .catch(PDFJS.MissingPDFException, () => this.setState({error: "Can't find PDF"}))
-                .catch((e) => this.setState({error: e.message}))
+                .catch((e) => this.setState({error: e.message}));
         }
     }
 
@@ -68,8 +70,8 @@ class PDF extends React.Component {
     componentDidUpdate() {
         if(this.state.pdf && this.state.pages){
             this.state.pages.map((page, i) => {
-                const canvas = findDOMNode(this.refs[i]),
-                    context = canvas.getContext('2d'),
+                const canvas = findDOMNode(this.refs[i]);
+                const context = canvas.getContext('2d'),
                     scale = this.props.scale || 1,
                     viewport = page.getViewport(canvas.width / page.getViewport(scale).width);
                 canvas.height = viewport.height;
@@ -104,9 +106,9 @@ PDF.propTypes = {
            return new Error('Validation failed!');
         }
     },
-    url: React.PropTypes.string,
-    width: React.PropTypes.number,
-    finished: React.PropTypes.func
+    url: PropTypes.string,
+    width: PropTypes.number,
+    finished: PropTypes.func
 };
 
 

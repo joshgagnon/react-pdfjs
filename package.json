@@ -1,6 +1,6 @@
 {
   "name": "react-pdf-component",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Joshua Gagnon",
   "license": "(MIT OR Apache-2.0)",
   "repository": {
@@ -11,15 +11,14 @@
   "scripts": {
     "build-examples": "webpack -p",
     "test": "mocha --require test/setup.js --compilers js:babel-core/register",
-    "compile": "babel -d lib/ src/",
+    "compile": "babel src --out-dir lib",
     "prepublish": "npm run compile"
   },
   "dependencies": {
-    "pdfjs-dist": "^1.4.44",
-    "pure-render-decorator": "^0.2.0",
-    "react": "^0.14.6",
-    "react-addons-shallow-compare": "^0.14.7",
-    "react-dom": "^0.14.6"
+    "pdfjs-dist": "^1.8.495",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
@@ -31,14 +30,13 @@
     "babel-preset-stage-0": "^6.3.13",
     "bluebird": "^3.1.1",
     "chai": "^3.4.1",
-    "entry-loader": "^0.1.0",
     "isomorphic-fetch": "^2.2.0",
-    "jsdom": "^8.0.2",
+    "jsdom": "^11.0.0",
     "mocha": "^2.3.4",
     "node-ensure": "0.0.0",
-    "react-addons-test-utils": "^0.14.7",
+    "react-addons-test-utils": "^15.0.0",
     "url-parse": "^1.0.5",
-    "webpack": "^1.12.10",
+    "webpack": "^2.6.0",
     "xhr2": "^0.1.3"
   }
 }
