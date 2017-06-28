@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 PDFJS.PDFJS.workerSrc = 'pdf.worker.js';
 
+const DEFAULT_WIDTH = 1500;
 
 Promise.config({
     cancellation: true
@@ -73,7 +74,9 @@ class PDF extends React.PureComponent {
                 const canvas = findDOMNode(this.refs[i]);
                 const context = canvas.getContext('2d'),
                     scale = this.props.scale || 1,
-                    viewport = page.getViewport(canvas.width / page.getViewport(scale).width);
+                    viewport = page.getViewport(scale)
+
+
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
                 page.render({
@@ -90,11 +93,11 @@ class PDF extends React.PureComponent {
             return <div>{ this.state.error }</div>
         }
         if(!this.state.pdf){
-            return <div>No Document to show</div>
+            return <div>{this.props.noPDFMsg || 'No Document to show'}</div>
         }
         return <div>
             { Array(this.state.pdf.numPages).fill().map((page, i) => {
-                return <canvas key={i} ref={i} width={ this.props.width || 1500}  />
+                return <canvas key={i} ref={i}  />
             }) }
         </div>
     }
