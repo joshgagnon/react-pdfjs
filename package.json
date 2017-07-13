@@ -15,11 +15,13 @@
     "prepublish": "npm run compile"
   },
   "peerDependencies": {
-    "pdfjs-dist": "^1.8.495",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
+  "dependencies": {
+    "pdfjs-dist": "^1.8.495"
+ },
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.4.0",
