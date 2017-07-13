@@ -14,7 +14,7 @@
     "compile": "babel src --out-dir lib",
     "prepublish": "npm run compile"
   },
-  "dependencies": {
+  "peerDependencies": {
     "pdfjs-dist": "^1.8.495",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
