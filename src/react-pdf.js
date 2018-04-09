@@ -117,5 +117,6 @@ PDF.propTypes = {
     finished: PropTypes.func
 };
 
+PDF.PDFJS = PDFJS;
 
 export default PDF;
