@@ -5,12 +5,13 @@ import TestUtils from 'react-dom/test-utils';
 import fs from 'fs';
 import PDFJS from 'pdfjs-dist'
 
-//PDFJS.PDFJS.workerSrc = 'examples/pdf.worker.js';
-//PDFJS.PDFJS.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
+//PDFJS.workerSrc = 'examples/pdf.worker.js';
+PDFJS.GlobalWorkerOptions.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.js';
 
 describe('Test PDF component', function() {
 
     before('render and locate element', function(done){
+        this.timeout(10000);
         fs.readFile('examples/example.pdf', (err, data) => {
             if(err){
                 throw err;

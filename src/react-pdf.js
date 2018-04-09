@@ -6,7 +6,7 @@ import Promise from 'bluebird';
 import PropTypes from 'prop-types';
 
 
-PDFJS.PDFJS.workerSrc = 'pdf.worker.js';
+PDFJS.GlobalWorkerOptions.workerSrc = 'pdf.worker.js';
 
 const DEFAULT_WIDTH = 1500;
 
@@ -26,7 +26,7 @@ class PDF extends React.PureComponent {
 
     componentDidMount() {
         if(this.props.worker === false){
-            PDFJS.PDFJS.disableWorker = true;
+            PDFJS.GlobalWorkerOptions.disableWorker = true;
         }
         this.loadDocument(this.props);
     }
@@ -56,6 +56,9 @@ class PDF extends React.PureComponent {
         })
         .then((pages) => {
             this.setState({ pages: pages });
+        })
+        .catch(e => {
+            console.log(e)
         })
     }
 

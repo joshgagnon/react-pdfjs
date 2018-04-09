@@ -20,8 +20,8 @@
     "react-dom": "^15.6.1"
   },
   "dependencies": {
-    "pdfjs-dist": "^1.8.495"
- },
+    "pdfjs-dist": "^2.0.487"
+  },
   "devDependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
