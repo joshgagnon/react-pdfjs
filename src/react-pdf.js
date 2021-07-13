@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import PDFJS from 'pdfjs-dist'
+const PDFJS = require('pdfjs-dist');
 import Promise from 'bluebird';
 import PropTypes from 'prop-types';
 
