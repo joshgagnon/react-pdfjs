@@ -52,7 +52,8 @@ class PDF extends React.PureComponent {
         this.setState({ pdf: pdf, error: null });
         this._pagePromises && this._pagePromises.isPending() && this._pagePromises.cancel();
         return this._pagePromises = Promise.map(Array(this.state.pdf.numPages).fill(), (p, i) => {
-            return pdf.getPage(i + 1);
+
+            return pdf.promise.then(pdf => pdf.getPage(i + 1));
         })
         .then((pages) => {
             this.setState({ pages: pages });
@@ -77,7 +78,7 @@ class PDF extends React.PureComponent {
                 const canvas = findDOMNode(this.refs[i]);
                 const context = canvas.getContext('2d'),
                     scale = this.props.scale || 1,
-                    viewport = page.getViewport(scale)
+                    viewport = page.getViewport({scale})
 
 
                 canvas.height = viewport.height;

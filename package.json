@@ -20,11 +20,9 @@
     "react-dom": "^15.6.1"
   },
   "dependencies": {
-    "pdfjs-dist": "^2.0.487"
+    "pdfjs-dist": "2.6"
   },
   "devDependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.4.0",
     "babel-loader": "^6.2.1",
@@ -38,7 +36,9 @@
     "jsdom": "^11.0.0",
     "mocha": "^2.3.4",
     "node-ensure": "0.0.0",
+    "react": "^15.6.1",
     "react-addons-test-utils": "^15.0.0",
+    "react-dom": "^15.6.1",
     "url-parse": "^1.0.5",
     "webpack": "^2.6.0",
     "xhr2": "^0.1.3"
