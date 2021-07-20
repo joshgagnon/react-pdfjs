@@ -51,7 +51,7 @@ class PDF extends React.PureComponent {
     completeDocument(pdf) {
         this.setState({ pdf: pdf, error: null });
         this._pagePromises && this._pagePromises.isPending() && this._pagePromises.cancel();
-        return this._pagePromises = pdf.promise.then(pdf => {
+        return this._pagePromises = Promise.resolve(pdf.promise).then(pdf => {
             this.setState({ pdf: pdf, error: null });
             return Promise.map(Array(pdf.numPages).fill(), (p, i) => {
                 return pdf.getPage(i + 1);
